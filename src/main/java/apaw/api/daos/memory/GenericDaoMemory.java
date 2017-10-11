@@ -1,7 +1,5 @@
 package apaw.api.daos.memory;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import apaw.api.daos.GenericDao;
@@ -10,7 +8,7 @@ public abstract class GenericDaoMemory<T> implements GenericDao<T, Integer> {
 
     private Map<Integer, T> map;
 
-    private int id;
+    private Integer id;
 
     public GenericDaoMemory() {
         id=0;
@@ -26,10 +24,16 @@ public abstract class GenericDaoMemory<T> implements GenericDao<T, Integer> {
         this.setId(entity, id);
         id++;
     }
+    
+    @Override
+    public T read(Integer id) {
+//        System.out.println("T read T read T read T read " + id + "" + map.get(id));
+        return map.get(id);
+    }
 
    
-    protected abstract int getId(T entity);
+    protected abstract Integer getId(T entity);
 
-    protected abstract void setId(T entity, int id);
+    protected abstract void setId(T entity, Integer id);
 
 }

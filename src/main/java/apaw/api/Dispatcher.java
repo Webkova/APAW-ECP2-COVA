@@ -7,7 +7,7 @@ import apaw.http.HttpResponse;
 import apaw.http.HttpStatus;
 
 public class Dispatcher {
-    
+
     private MovieResource movieResource = new MovieResource();
 
     private void responseError(HttpResponse response, Exception e) {
@@ -16,7 +16,17 @@ public class Dispatcher {
     }
 
     public void doGet(HttpRequest request, HttpResponse response) {
-
+        try {
+            System.out.println("doGetdoGetdoGetdoGetdoGetdoGet!");
+            if (request.isEqualsPath(MovieResource.MOVIES + MovieResource.ID)) {
+                System.out.println("AQUIIIII " + request.paths()[1]);
+                response.setBody(movieResource.readMovie(Integer.valueOf(request.paths()[1])).toString());
+            } else {
+                throw new RequestInvalidException(request.getPath());
+            }
+        } catch (Exception e) {
+            responseError(response, e);
+        }
     }
 
     public void doPost(HttpRequest request, HttpResponse response) {

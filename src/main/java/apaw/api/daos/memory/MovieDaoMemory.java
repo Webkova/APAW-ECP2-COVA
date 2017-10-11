@@ -12,14 +12,15 @@ public class MovieDaoMemory extends GenericDaoMemory<Movie> implements MovieDao 
     }
 
     @Override
-    protected int getId(Movie entity) {
+    protected Integer getId(Movie entity) {
         return entity.getId();
     }
 
     @Override
-    protected void setId(Movie entity, int id) {
+    protected void setId(Movie entity, Integer id) {
         entity.setId(id);
 
     }
+
 
 }

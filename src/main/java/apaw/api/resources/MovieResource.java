@@ -42,7 +42,4 @@ public class MovieResource {
         }
     }
 
-    private Long convetStringToLong(String idMovie) {
-        return Long.parseLong(idMovie);
-    }
 }

@@ -1,5 +1,7 @@
 package apaw;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -38,19 +40,21 @@ public class MovieResourceFunctionalTesting {
     }
     
     @Test(expected = HttpException.class)
-    public void testCreateWithoutThemeName() {
+    public void testCreateWithoutMovieId() {
         HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(MovieResource.MOVIES).build();
         new HttpClientService().httpRequest(request);
     }
     
-//    @Test
-//    public void testReadTheme() {
-//        this.createMovie();
-//        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(MovieResource.MOVIES).path(MovieResource.ID)
-//                .expandPath("1").build();
-//        assertEquals("{\"id\":1,\"name\":\"1\"}", new HttpClientService().httpRequest(request).getBody());
-//
-//    }
+    @Test
+    public void testReadMovie() {
+        this.createMovie();
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(MovieResource.MOVIES).path(MovieResource.ID)
+                .expandPath("1").build();
+        new HttpClientService().httpRequest(request);
+//        System.out.println("Esta es la request: " + request);
+//        assertEquals("HTTP/1.1 200 OK", new HttpClientService().httpRequest(request).getBody());
+
+    }
     
     
 }

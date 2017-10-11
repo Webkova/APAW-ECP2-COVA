@@ -1,5 +1,6 @@
 package apaw.api;
 
+import apaw.api.resources.DirectorResource;
 import apaw.api.resources.MovieResource;
 import apaw.api.resources.exceptions.RequestInvalidException;
 import apaw.http.HttpRequest;
@@ -9,6 +10,7 @@ import apaw.http.HttpStatus;
 public class Dispatcher {
 
     private MovieResource movieResource = new MovieResource();
+    private DirectorResource directorResource = new DirectorResource();
 
     private void responseError(HttpResponse response, Exception e) {
         response.setBody("{\"error\":\"" + e + "\"}");
@@ -34,6 +36,9 @@ public class Dispatcher {
             if (request.isEqualsPath(MovieResource.MOVIES)) {
                 System.out.println("El valor es: " + request.getBody());
                 movieResource.createMovie(request.getBody());
+                response.setStatus(HttpStatus.CREATED);
+            } else if (request.isEqualsPath(DirectorResource.DIRECTORS)) {
+                directorResource.createDirector(request.getBody());
                 response.setStatus(HttpStatus.CREATED);
             } else {
                 throw new RequestInvalidException(request.getPath());

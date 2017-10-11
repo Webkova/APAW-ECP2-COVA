@@ -1,5 +1,5 @@
 # Forja
-#### Asignatura: *Ingeniería Web: Visión General*
+#### Asignatura: *Arquitecturas y Patrones Web*
 #### [Máster en Ingeniería Web por la U.P.M.](http://miw.etsisi.upm.es)
 
 ### Tecnologías necesarias
@@ -8,9 +8,8 @@
 * Eclipse
 * GitHub
 
-### Descripción
-Este proyecto pretende ser una plantilla maven para crear un proyecto
-1.- Descomprimir en la carpeta de trabajo
-1.- Editar el pom.xml y cambiarle el nombre del proyecto
-1.- Desde Eclipse, importar el proyecto como un proyecto de maven existente
-
+### Descripción APAW. ECP2. Arquitecturas y Patrones Web
+Resumen del ejercicio
+ 1. Preparación del proyecto, definición del API Rest e implementación del dispatcher con los DTOs
+ 2. Desarrollo de los paquetes resources & resources.exception
+ 3. Desarrollo de los paquetes controllers, entities & daos

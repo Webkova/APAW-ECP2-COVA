@@ -1,17 +1,25 @@
 package apaw;
 
-import static org.junit.Assert.assertEquals;
-
+import org.junit.Before;
 import org.junit.Test;
 
+import apaw.api.daos.DaoFactory;
 import apaw.api.resources.MovieResource;
 import apaw.http.HttpClientService;
 import apaw.http.HttpMethod;
 import apaw.http.HttpRequest;
 import apaw.http.HttpRequestBuilder;
 import apaw.http.HttpException;
+import apaw.api.daos.memory.DaoMemoryFactory;
 
 public class MovieResourceFunctionalTesting {
+    
+    
+    @Before
+    public void before(){
+        DaoFactory.setFactory(new DaoMemoryFactory());
+    }
+    
 
     private void createMovie() {
         HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(MovieResource.MOVIES).body("1").build();

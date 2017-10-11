@@ -4,12 +4,14 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import apaw.api.entities.Movie;
+
 public class MovieTest {
-    
 
     @Test
-    public void testGetDate() {
-        assertEquals(1, new MovieDto(1).getId());
+    public void testGetId() {
+        Movie movie = new Movie(1);
+        assertEquals(1, movie.getId());
     }
 
 }

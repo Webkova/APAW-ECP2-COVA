@@ -1,5 +1,7 @@
 package apaw.api.dtos;
 
+import apaw.api.entities.Movie;
+
 public class MovieDto {
     
     private int id;
@@ -11,8 +13,9 @@ public class MovieDto {
 
     }
     
-    public MovieDto(int id){
-        this.id = id;
+    public MovieDto(Movie movie){
+        this.id = movie.getId();
+        this.title = movie.getTitle();
     }
     
     

@@ -21,14 +21,14 @@ public class DirectorResourceFunctionalTesting {
     }
     
 
-    private void createDirector() {
-        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(DirectorResource.DIRECTORS).body("1").build();
+    private void createDirector(String directorName) {
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(DirectorResource.DIRECTORS).body(directorName).build();
         new HttpClientService().httpRequest(request);
     }
     
     @Test
     public void testCreateDirector() {
-        this.createDirector();
+        this.createDirector("Denis Villeneuve");
     }
     
     @Test(expected = HttpException.class)

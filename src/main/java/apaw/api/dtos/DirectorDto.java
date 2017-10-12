@@ -1,20 +1,23 @@
-package apaw.api.entities;
+package apaw.api.dtos;
 
-public class Director {
+import apaw.api.entities.Director;
+
+public class DirectorDto {
 
     private int id;
 
     private String name;
 
     private int level;
+    
 
-    public Director() {
+    public DirectorDto() {
 
     }
 
-    public Director(String name) {
-        this.name = name;
-        this.level = 9;
+    public DirectorDto(Director director) {
+        this.id = director.getId();
+        this.name = director.getName();
     }
 
     public String getName() {
@@ -36,10 +39,15 @@ public class Director {
     public int getLevel() {
         return level;
     }
+    
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
 
     @Override
     public String toString() {
-        return "Director [id=" + id + ", name=" + name + ", level=" + level + "]";
+        return "{\"id\":" + id + ",\"name\":\"" + name + "\"}";
     }
 
 }

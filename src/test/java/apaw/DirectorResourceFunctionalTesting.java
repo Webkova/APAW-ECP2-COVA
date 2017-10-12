@@ -1,5 +1,7 @@
 package apaw;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -43,6 +45,15 @@ public class DirectorResourceFunctionalTesting {
         new HttpClientService().httpRequest(request);
     }
     
-    
+    @Test
+    public void testReadDirector() {
+        this.createDirector("Isabel Coixet");
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(DirectorResource.DIRECTORS).path(DirectorResource.ID)
+                .expandPath("0").build();
+        System.out.println("LA PETICIÓN ES: " + request);
+        assertEquals("{\"id\":0,\"name\":\"Isabel Coixet\"}",
+                new HttpClientService().httpRequest(request).getBody());
+
+    }
     
 }

@@ -1,5 +1,8 @@
 package apaw.api.controllers;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,15 +20,15 @@ public class DirectorControllerIT {
         directorController.createDirector("Denis Villeneuve");
     }
     
-//    @Test
-//    public void testReadTheme() {
-//       assertEquals("Star Wars", directorController.readDirector(0).get().getTitle());
-//    }
-//    
-//    @Test
-//    public void testReadMovieNonExistId() {
-//       assertFalse(directorController.readMovie(2).isPresent());
-//    }
+    @Test
+    public void testReadTheme() {
+       assertEquals("Denis Villeneuve", directorController.readDirector(0).get().getName());
+    }
+    
+    @Test
+    public void testReadDirectorNonExistId() {
+       assertFalse(directorController.readDirector(2).isPresent());
+    }
 
     @Test
     public void testCreate() {

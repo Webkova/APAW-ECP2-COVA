@@ -1,7 +1,11 @@
 package apaw.api.resources;
 
+import java.util.Optional;
+
 import apaw.api.controllers.DirectorController;
+import apaw.api.dtos.DirectorDto;
 import apaw.api.resources.exceptions.DirectorFieldInvalidException;
+import apaw.api.resources.exceptions.DirectorIdNotFoundException;
 
 
 public class DirectorResource {
@@ -10,7 +14,6 @@ public class DirectorResource {
     
     public static final String ID = "/{id}";
     
-    public static final String ID_NAME = ID + "/name";
     
     
     public void createDirector(String directorName) throws DirectorFieldInvalidException {
@@ -22,5 +25,11 @@ public class DirectorResource {
         if (field == null || field.isEmpty()) {
             throw new DirectorFieldInvalidException(field);
         }
+    }
+    
+    public DirectorDto readDirector(int directorName) throws DirectorIdNotFoundException {
+        Optional<DirectorDto> optional = new DirectorController().readDirector(directorName);       
+        return optional.orElseThrow(() -> new DirectorIdNotFoundException(Integer.toString(directorName)));
+
     }
 }

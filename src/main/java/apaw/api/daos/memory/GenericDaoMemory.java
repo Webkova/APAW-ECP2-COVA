@@ -27,7 +27,6 @@ public abstract class GenericDaoMemory<T> implements GenericDao<T, Integer> {
     
     @Override
     public T read(Integer id) {
-//        System.out.println("T read T read T read T read " + id + "" + map.get(id));
         return map.get(id);
     }
 

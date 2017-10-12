@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import apaw.api.daos.DaoFactory;
 import apaw.api.resources.DirectorResource;
-import apaw.api.resources.MovieResource;
 import apaw.http.HttpClientService;
 import apaw.http.HttpMethod;
 import apaw.http.HttpRequest;
@@ -49,10 +48,11 @@ public class DirectorResourceFunctionalTesting {
     @Test
     public void testReadDirector() {
         this.createDirector("Isabel Coixet");
-        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(MovieResource.MOVIES).path(MovieResource.ID)
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(DirectorResource.DIRECTORS).path(DirectorResource.ID)
                 .expandPath("0").build();
-       // assertEquals("{\"id\":0,\"title\":\"Isabel Coixet\"}",
-       //         new HttpClientService().httpRequest(request).getBody());
+        System.out.println("LA PETICIÓN ES: " + request);
+        assertEquals("{\"id\":0,\"name\":\"Isabel Coixet\"}",
+                new HttpClientService().httpRequest(request).getBody());
 
     }
     

@@ -1,6 +1,7 @@
 package apaw.api;
 
 import apaw.api.resources.DirectorResource;
+import apaw.api.resources.GenreResource;
 import apaw.api.resources.MovieResource;
 import apaw.api.resources.exceptions.RequestInvalidException;
 import apaw.http.HttpRequest;
@@ -11,6 +12,7 @@ public class Dispatcher {
 
     private MovieResource movieResource = new MovieResource();
     private DirectorResource directorResource = new DirectorResource();
+    private GenreResource genreResource = new GenreResource();
 
     private void responseError(HttpResponse response, Exception e) {
         response.setBody("{\"error\":\"" + e + "\"}");
@@ -40,7 +42,10 @@ public class Dispatcher {
             } else if (request.isEqualsPath(DirectorResource.DIRECTORS)) {
                 directorResource.createDirector(request.getBody());
                 response.setStatus(HttpStatus.CREATED);
-            } else {
+            } else if (request.isEqualsPath(GenreResource.GENRES)) {
+                genreResource.createGenre(request.getBody());
+                response.setStatus(HttpStatus.CREATED);
+            }else {
                 throw new RequestInvalidException(request.getPath());
             }
         } catch (Exception e) {

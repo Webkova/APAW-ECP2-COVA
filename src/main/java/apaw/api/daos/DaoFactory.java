@@ -16,5 +16,7 @@ public abstract class DaoFactory {
     public abstract MovieDao getMovieDao();
 
     public abstract DirectorDao getDirectorDao();
+    
+    public abstract GenreDao getGenreDao();
 
 }

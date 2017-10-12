@@ -8,7 +8,6 @@ import org.junit.Test;
 import apaw.api.daos.DaoFactory;
 import apaw.api.daos.memory.DaoMemoryFactory;
 import apaw.api.resources.GenreResource;
-import apaw.api.resources.MovieResource;
 import apaw.http.HttpClientService;
 import apaw.http.HttpException;
 import apaw.http.HttpMethod;
@@ -49,8 +48,8 @@ public class GenreResourceFunctionalTesting {
         this.createGenre("ACTION");
         HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(GenreResource.GENRES).path(GenreResource.ID)
                 .expandPath("0").build();
-//        assertEquals("{\"id\":0,\"title\":\"ACTION\"}",
-//                new HttpClientService().httpRequest(request).getBody());
+        assertEquals("{\"id\":0,\"name\":\"ACTION\"}",
+                new HttpClientService().httpRequest(request).getBody());
 
     }
 }

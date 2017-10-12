@@ -1,17 +1,18 @@
 package apaw.api;
 
-import es.upm.miw.apaw.theme.api.resources.ThemeResource;
-import es.upm.miw.apaw.theme.api.resources.VoteResource;
+import apaw.api.resources.DirectorResource;
+import apaw.api.resources.GenreResource;
+import apaw.api.resources.MovieResource;
 import apaw.api.resources.exceptions.RequestInvalidException;
-import es.upm.miw.apaw.theme.http.HttpRequest;
-import es.upm.miw.apaw.theme.http.HttpResponse;
-import es.upm.miw.apaw.theme.http.HttpStatus;
+import apaw.http.HttpRequest;
+import apaw.http.HttpResponse;
+import apaw.http.HttpStatus;
 
 public class Dispatcher {
 
-    private ThemeResource themeResource = new ThemeResource();
-
-    private VoteResource voteResource = new VoteResource();
+    private MovieResource movieResource = new MovieResource();
+    private DirectorResource directorResource = new DirectorResource();
+    private GenreResource genreResource = new GenreResource();
 
     private void responseError(HttpResponse response, Exception e) {
         response.setBody("{\"error\":\"" + e + "\"}");
@@ -20,16 +21,13 @@ public class Dispatcher {
 
     public void doGet(HttpRequest request, HttpResponse response) {
         try {
-            if (request.isEqualsPath(ThemeResource.THEMES)) {
-                response.setBody(themeResource.themeList().toString());
-            } else if (request.isEqualsPath(ThemeResource.THEMES + ThemeResource.ID)) {
-                response.setBody(themeResource.readTheme(Integer.valueOf(request.paths()[1])).toString());
-            } else if (request.isEqualsPath(ThemeResource.THEMES + ThemeResource.ID_OVERAGE)) {
-                response.setBody(themeResource.themeOverage(Integer.valueOf(request.paths()[1])).toString());
-            } else if (request.isEqualsPath(ThemeResource.THEMES + ThemeResource.ID_VOTES)) {
-                response.setBody(themeResource.themeVoteList(Integer.valueOf(request.paths()[1])).toString());
-            } else if (request.isEqualsPath(VoteResource.VOTES)) {
-                response.setBody(voteResource.voteList().toString());
+            System.out.println("El valor es: " + request);
+            if (request.isEqualsPath(MovieResource.MOVIES + MovieResource.ID)) {
+                response.setBody(movieResource.readMovie(Integer.valueOf(request.paths()[1])).toString());
+            } else if (request.isEqualsPath(DirectorResource.DIRECTORS + DirectorResource.ID)) {
+                response.setBody(directorResource.readDirector(Integer.valueOf(request.paths()[1])).toString());   
+            } else if (request.isEqualsPath(GenreResource.GENRES + GenreResource.ID)) {
+                response.setBody(genreResource.readGenre(Integer.valueOf(request.paths()[1])).toString());   
             } else {
                 throw new RequestInvalidException(request.getPath());
             }
@@ -40,20 +38,22 @@ public class Dispatcher {
 
     public void doPost(HttpRequest request, HttpResponse response) {
         try {
-            if (request.isEqualsPath(ThemeResource.THEMES)) {
-                themeResource.createTheme(request.getBody());
+            if (request.isEqualsPath(MovieResource.MOVIES)) {
+                movieResource.createMovie(request.getBody());
                 response.setStatus(HttpStatus.CREATED);
-            } else if (request.isEqualsPath(VoteResource.VOTES)) {
-                String themeId = request.getBody().split(":")[0]; // body="themeId:vote" LO HACE EN PLAN SENCILLO.
-                String vote = request.getBody().split(":")[1];
-                voteResource.createVote(Integer.valueOf(themeId), Integer.valueOf(vote));
+            } else if (request.isEqualsPath(DirectorResource.DIRECTORS)) {
+                directorResource.createDirector(request.getBody());
                 response.setStatus(HttpStatus.CREATED);
-            } else {
+            } else if (request.isEqualsPath(GenreResource.GENRES)) {
+                genreResource.createGenre(request.getBody());
+                response.setStatus(HttpStatus.CREATED);
+            }else {
                 throw new RequestInvalidException(request.getPath());
             }
         } catch (Exception e) {
             responseError(response, e);
         }
+
     }
 
     public void doPut(HttpRequest request, HttpResponse response) {

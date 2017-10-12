@@ -1,10 +1,13 @@
 package apaw;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import apaw.api.daos.DaoFactory;
 import apaw.api.resources.DirectorResource;
+import apaw.api.resources.MovieResource;
 import apaw.http.HttpClientService;
 import apaw.http.HttpMethod;
 import apaw.http.HttpRequest;
@@ -43,6 +46,14 @@ public class DirectorResourceFunctionalTesting {
         new HttpClientService().httpRequest(request);
     }
     
-    
+    @Test
+    public void testReadDirector() {
+        this.createDirector("Isabel Coixet");
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(MovieResource.MOVIES).path(MovieResource.ID)
+                .expandPath("0").build();
+       // assertEquals("{\"id\":0,\"title\":\"Isabel Coixet\"}",
+       //         new HttpClientService().httpRequest(request).getBody());
+
+    }
     
 }

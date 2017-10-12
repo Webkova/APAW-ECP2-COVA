@@ -19,9 +19,7 @@ public class Dispatcher {
 
     public void doGet(HttpRequest request, HttpResponse response) {
         try {
-            System.out.println("doGetdoGetdoGetdoGetdoGetdoGet!");
             if (request.isEqualsPath(MovieResource.MOVIES + MovieResource.ID)) {
-                System.out.println("AQUIIIII " + request.paths()[1]);
                 response.setBody(movieResource.readMovie(Integer.valueOf(request.paths()[1])).toString());
             } else {
                 throw new RequestInvalidException(request.getPath());
@@ -34,7 +32,6 @@ public class Dispatcher {
     public void doPost(HttpRequest request, HttpResponse response) {
         try {
             if (request.isEqualsPath(MovieResource.MOVIES)) {
-                System.out.println("El valor es: " + request.getBody());
                 movieResource.createMovie(request.getBody());
                 response.setStatus(HttpStatus.CREATED);
             } else if (request.isEqualsPath(DirectorResource.DIRECTORS)) {

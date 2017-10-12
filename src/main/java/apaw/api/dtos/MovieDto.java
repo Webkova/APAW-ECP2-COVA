@@ -43,6 +43,11 @@ public class MovieDto {
     public void setDebut(int debut) {
         this.debut = debut;
     }
+    
+    @Override
+    public String toString() {
+        return "{\"id\":" + id + ",\"title\":\"" + title + "\"}";
+    }
    
 
 }

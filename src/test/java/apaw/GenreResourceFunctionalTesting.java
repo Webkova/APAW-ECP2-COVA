@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import apaw.api.daos.DaoFactory;
 import apaw.api.daos.memory.DaoMemoryFactory;
-import apaw.api.resources.MovieResource;
+import apaw.api.resources.GenreResource;
 import apaw.http.HttpClientService;
 import apaw.http.HttpException;
 import apaw.http.HttpMethod;
@@ -20,24 +20,24 @@ public class GenreResourceFunctionalTesting {
     }
 
     private void createGenre(String idGenre) {
-        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(MovieResource.MOVIES).body(idGenre).build();
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(GenreResource.GENRES).body(idGenre).build();
         new HttpClientService().httpRequest(request);
     }
 
     @Test
-    public void testCreateMovie() {
+    public void testCreateGenre() {
         this.createGenre("ACTION");
     }
 
     @Test(expected = HttpException.class)
-    public void testCreateMovieIdEmpty() {
-        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(MovieResource.MOVIES).body("").build();
+    public void testCreateGenreIdEmpty() {
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(GenreResource.GENRES).body("").build();
         new HttpClientService().httpRequest(request);
     }
 
     @Test(expected = HttpException.class)
     public void testCreateWithoutMovie() {
-        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(MovieResource.MOVIES).build();
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(GenreResource.GENRES).build();
         new HttpClientService().httpRequest(request);
     }
 }

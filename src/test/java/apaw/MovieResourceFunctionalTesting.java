@@ -21,14 +21,14 @@ public class MovieResourceFunctionalTesting {
     }
     
 
-    private void createMovie() {
-        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(MovieResource.MOVIES).body("1").build();
+    private void createMovie(String idMovie) {
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(MovieResource.MOVIES).body(idMovie).build();
         new HttpClientService().httpRequest(request);
     }
     
     @Test
     public void testCreateMovie() {
-        this.createMovie();
+        this.createMovie("1");
     }
     
     @Test(expected = HttpException.class)
@@ -45,9 +45,9 @@ public class MovieResourceFunctionalTesting {
     
     @Test
     public void testReadMovie() {
-        this.createMovie();
+        this.createMovie("2");
         HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(MovieResource.MOVIES).path(MovieResource.ID)
-                .expandPath("1").build();
+                .expandPath("2").build();
         System.out.println("Esta es la request: " + request);
         new HttpClientService().httpRequest(request);
 //        System.out.println("Esta es la request: " + request);

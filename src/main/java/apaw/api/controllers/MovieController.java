@@ -12,8 +12,8 @@ public class MovieController {
         return DaoFactory.getFactory().getMovieDao().read(themeId) != null;
     }
 
-    public void createMovie(int movieId) {
-        DaoFactory.getFactory().getMovieDao().create(new Movie(movieId));
+    public void createMovie(String movieName) {
+        DaoFactory.getFactory().getMovieDao().create(new Movie(movieName));
     }
 
     public Optional<MovieDto> readMovie(int themeId) {

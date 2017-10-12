@@ -11,8 +11,9 @@ public class Movie {
 
     }
     
-    public Movie(int id){
-        this.id = id;
+    public Movie(String title){
+        this.title = title;
+        this.debut = 2017;
     }
     
     
@@ -36,10 +37,10 @@ public class Movie {
     public int getDebut() {
         return debut;
     }
-
-    public void setDebut(int debut) {
-        this.debut = debut;
+ 
+    @Override
+    public String toString() {
+        return "Movie [id=" + id + ", title=" + title + ", debut=" + debut + "]";
     }
-   
 
 }

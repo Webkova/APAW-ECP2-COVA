@@ -1,5 +1,7 @@
 package apaw;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -39,5 +41,15 @@ public class GenreResourceFunctionalTesting {
     public void testCreateWithoutMovie() {
         HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(GenreResource.GENRES).build();
         new HttpClientService().httpRequest(request);
+    }
+    
+    @Test
+    public void testReadGenre() {
+        this.createGenre("ACTION");
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(GenreResource.GENRES).path(GenreResource.ID)
+                .expandPath("0").build();
+        assertEquals("{\"id\":0,\"name\":\"ACTION\"}",
+                new HttpClientService().httpRequest(request).getBody());
+
     }
 }

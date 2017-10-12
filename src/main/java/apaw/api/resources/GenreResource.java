@@ -7,6 +7,8 @@ import apaw.api.resources.exceptions.GenreFieldInvalidException;
 public class GenreResource {
 
     public static final String GENRES = "genres";
+    
+    public static final String ID = "/{id}";
 
       
     public void createGenre(String genreName) throws GenreFieldInvalidException {

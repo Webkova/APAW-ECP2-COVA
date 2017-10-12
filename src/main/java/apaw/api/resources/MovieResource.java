@@ -13,10 +13,6 @@ public class MovieResource {
 
     public static final String ID = "/{id}";
 
-    public static final String ID_TITLE = ID + "/title";
-
-    public static final String ID_DEBUT = ID + "/debut";
-    
     
     public MovieDto readMovie(int movieId) throws MovieIdNotFoundException {
         Optional<MovieDto> optional = new MovieController().readMovie(movieId);//Delego en el controlador para que lo haga él.

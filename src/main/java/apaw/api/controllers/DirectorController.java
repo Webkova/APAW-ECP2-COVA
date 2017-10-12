@@ -5,8 +5,8 @@ import apaw.api.entities.Director;
 
 public class DirectorController {
 
-    public void createDirector(int movieId) {
-        DaoFactory.getFactory().getDirectorDao().create(new Director(movieId));
+    public void createDirector(String movieName) {
+        DaoFactory.getFactory().getDirectorDao().create(new Director(movieName));
     }
  }
 

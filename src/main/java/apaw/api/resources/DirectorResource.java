@@ -13,9 +13,9 @@ public class DirectorResource {
     public static final String ID_NAME = ID + "/name";
     
     
-    public void createDirector(String directorId) throws DirectorFieldInvalidException {
-        this.validateField(directorId);
-        new DirectorController().createDirector(Integer.parseInt(directorId));
+    public void createDirector(String directorName) throws DirectorFieldInvalidException {
+        this.validateField(directorName);
+        new DirectorController().createDirector(directorName);
     }
     
     private void validateField(String field) throws DirectorFieldInvalidException {

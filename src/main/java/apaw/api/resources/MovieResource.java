@@ -23,17 +23,14 @@ public class MovieResource {
         //Con Java8, Optional. Significa que puede que te lo devuelva o no (sea null). De una forma explícita me dice que puede ser null.
         //NO es necesario hacer htmeDto == null y lanzar una excepción.
         
-        
-        
-        System.out.println("OPTIONAL " + optional);
+
         return optional.orElseThrow(() -> new MovieIdNotFoundException(Integer.toString(movieId)));
         //devuelve el opcional si lo tienes y si no lo tiene me montas una excepción (ThemeIdNotFoundException).
     }
 
-    public void createMovie(String movieid) throws MovieFieldInvalidException {
-        this.validateField(movieid);
-        //new MovieController().createMovie(this.convetStringToLong(movieid));
-        new MovieController().createMovie(Integer.parseInt(movieid));
+    public void createMovie(String movieName) throws MovieFieldInvalidException {
+        this.validateField(movieName);
+        new MovieController().createMovie(movieName);
     }
 
     private void validateField(String field) throws MovieFieldInvalidException {

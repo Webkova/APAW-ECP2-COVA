@@ -22,7 +22,4 @@ public class DirectorDaoMemory extends GenericDaoMemory<Director> implements Dir
 
     }
 
-
-
-
 }
